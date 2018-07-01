@@ -1,0 +1,26 @@
+/**
+ * Parse PHP var_export
+ * @param str
+ * @returns {*}
+ */
+function parseVarExport(str) {
+    try {
+        str = str.trim();
+        str = str.replace('<?php', '');
+        str = str.replace('?>', '');
+        str = str.replace(';', '');
+        str = str.replace('return ', '');
+        str = str.replace(/([0-9]+)\s+=>\s/g, '"$1" => ');
+        str = str.replace(/('|")([a-zA-Z0-9\_\-]+)('|")\s+=>\s/g, '"$2": ');
+        str = str.replace(/=>/g, ':');
+        str = str.replace(/array \(/g, '{');
+        str = str.replace(/\)/g, '}');
+        str = str.replace(/\s+/g, ' ');
+        str = str.replace(/,\s*}/g, '}');
+        str = str.replace(/'([^\r\n'""]*)'/g, '"$1"');
+        str = JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return str;
+}
