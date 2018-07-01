@@ -8,7 +8,7 @@
 [submodule]
 	active = .
 [remote "origin"]
-	url = https://github.com/ajaxorg/ace.wiki.git
+	url = https://github.com/servicetm/github-pages.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 [branch "master"]
 	remote = origin
